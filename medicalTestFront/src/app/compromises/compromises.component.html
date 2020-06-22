@@ -1,0 +1,20 @@
+<h2>Compromises List</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Doctor</th>
+            <th>User</th>
+            <th>Date Scheduled</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of compromises">
+            <td>{{c.id}}</td>
+            <td>{{c.doctor.name}}</td>
+            <td>{{c.user.name}}</td>
+            <td>{{c.dateScheduled}}</td>
+        </tr>
+    </tbody>
+</table>

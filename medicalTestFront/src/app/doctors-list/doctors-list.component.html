@@ -1,0 +1,18 @@
+<h2>Doctors List</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>CRM</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of doctors">
+            <td>{{d.id}}</td>
+            <td>{{d.crm}}</td>
+            <td>{{d.name}}</td>
+        </tr>
+    </tbody>
+</table>

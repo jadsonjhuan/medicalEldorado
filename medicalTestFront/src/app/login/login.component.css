@@ -1,0 +1,11 @@
+.box-login {
+    width: 280px;
+    height: 220px;
+    border: 1px solid #ccc;
+    margin: auto;
+    padding: 12px 26px;
+}
+.box-login * {
+    width: 100%;
+}
+
