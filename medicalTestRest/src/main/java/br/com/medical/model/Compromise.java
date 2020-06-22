@@ -44,6 +44,7 @@ public class Compromise {
 		this.id = id;
 	}
 
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	public Date getDateScheduled() {
 		return dateScheduled;
 	}

@@ -15,6 +15,8 @@ public class CompromiseService {
 	private CompromiseRepository compromiseRepo;
 	
 	public Boolean isAvailable(Doctor doctor, Date dateScheduled) {
+		System.out.println(dateScheduled);
+		System.out.println(doctor.getId());
 		Long count = compromiseRepo.dateScheduledIsAvailable(doctor.getId(), dateScheduled);
 		if (count > 0) {
 			return false;

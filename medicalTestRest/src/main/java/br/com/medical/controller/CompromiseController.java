@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ import br.com.medical.services.CompromiseService;
 
 @RestController
 @RequestMapping("/compromises")
+@CrossOrigin("*")
 public class CompromiseController {
 
 	@Autowired
@@ -48,17 +50,6 @@ public class CompromiseController {
 		}
 
 		return new ResponseEntity<Compromise>(compromiseOp.get(), HttpStatus.OK);
-	}
-
-	@PostMapping
-	public ResponseEntity<Compromise> insert(Compromise compromise) {
-		if (!compromiseService.isAvailable(compromise.getDoctor(), compromise.getDateScheduled())) {
-			throw new ModelAlreadyExistException("Horário indisponível para este médico!");
-		}
-
-		compromiseRepo.save(compromise);
-
-		return new ResponseEntity<Compromise>(compromise, HttpStatus.OK);
 	}
 
 	@PutMapping
@@ -98,6 +89,9 @@ public class CompromiseController {
 
 		if (compromiseService.isAvailable(compromise.getDoctor(), compromise.getDateScheduled())) {
 			User user = (User) session.getAttribute("user");
+			if(user == null) {
+				throw new ModelNotFoundException("Usuário não informado!");
+			}
 			compromise.setUser(user);
 			compromise.setCreated(new Date());
 			compromiseRepo.save(compromise);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UserService } from '../user.service';
 
@@ -12,17 +13,17 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
 
   user: any;
+  router: Router;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.user = {};
-    this.user.email = "Jadson@gmail.com";
   }
 
-  signin(frm: FormGroup) {
-    alert(this.user.email);
+  signin(formUser: FormGroup) {
     this.userService.signin(this.user).subscribe(response => {
+      console.log(response);
     });
   }
 
